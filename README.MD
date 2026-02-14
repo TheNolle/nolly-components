@@ -30,7 +30,7 @@ A complete, feature-rich audio player with 9 advanced features:
 - **Global State**: Multi-instance sync via React Context
 - **Design System**: Light/dark modes, 6 variants × 6 styles × 6 sizes = **1,296 combinations**
 
-[View Music Player Demo](/music-player) · [Component Docs](#music-player-api)
+[View Music Player Demo](https://thenolle.github.io/nolly-components/music-player) · [Component Docs](#music-player-api)
 
 ---
 
