@@ -130,6 +130,3 @@ storybook-static/
 **/public/workbox-*.js
 **/public/sw.js
 **/public/worker-*.js
-
-# pnpm
-pnpm-lock.yaml
