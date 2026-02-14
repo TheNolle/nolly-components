@@ -130,3 +130,6 @@ storybook-static/
 **/public/workbox-*.js
 **/public/sw.js
 **/public/worker-*.js
+
+# Wiki
+.wiki/

@@ -1,6 +1,8 @@
 'use client'
 
 import { MusicPlayer } from '@/components/MusicPlayer'
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 const VARIANTS = ['default', 'glass', 'minimal', 'neon', 'soft', 'elevated'] as const
 const STYLES = ['filled', 'outline', 'ghost', 'soft', 'blur', 'flat'] as const
@@ -41,6 +43,12 @@ export default function Page() {
 
   return (
     <div className='min-h-screen bg-neutral-900 p-12 text-white'>
+      <div className='mb-8'>
+        <Link href='/' className='text-sm text-neutral-500 hover:text-neutral-300 transition-colors'>
+          <ArrowLeft className='inline-block mr-2' /> Back to Home
+        </Link>
+      </div>
+
       <div className='mx-auto max-w-350 space-y-16'>
         <div className='space-y-4'>
           <h1 className='text-5xl font-bold'>Music Player Showcase</h1>
