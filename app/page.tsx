@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Music, MousePointer2, FileText, ArrowRight, Code2, Accessibility, Palette, Moon, Zap, Package } from 'lucide-react'
+import { Music, MousePointer2, FileText, ArrowRight, Code2, Accessibility, Palette, Moon, Zap, Package, Play } from 'lucide-react'
 import { SiGithub } from '@icons-pack/react-simple-icons'
 import { Button } from '@/components/Button'
 
@@ -15,7 +15,7 @@ const COMPONENTS = [
     gradient: 'from-violet-500 via-purple-500 to-pink-500',
     status: 'stable',
     features: ['HLS/DASH Streaming', 'Audio Visualizer', 'Media Session API', 'Playlist Queue'],
-    variants: 5184
+    variants: 5_184
   },
   {
     name: 'Button',
@@ -25,7 +25,17 @@ const COMPONENTS = [
     gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
     status: 'stable',
     features: ['9 Variants', '8 Styles', '7 Colors', 'Icon Support'],
-    variants: 54432
+    variants: 54_432
+  },
+  {
+    name: 'Video Player',
+    description: 'Production-ready video player with HLS streaming, subtitles, playlists, skip intro/outro, PiP, and 15,120 design combinations across 8 variants and 6 styles.',
+    href: '/video-player',
+    icon: Play,
+    gradient: 'from-red-500 via-orange-500 to-amber-500',
+    status: 'works in progress',
+    features: ['HLS Streaming', 'Subtitle Menu', 'Playlist Queue', 'Skip Intro/Outro'],
+    variants: 5_040
   }
 ]
 
