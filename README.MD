@@ -23,8 +23,10 @@ Modern, accessible, and highly customizable React components built with TypeScri
 - Music Player
 - Button
 
-**Coming Soon:**
+**Work In Progress:**
 - Video Player
+
+**Coming Soon:**
 - File Upload
 - Data Tables
 - And more...
