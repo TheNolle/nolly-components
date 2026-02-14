@@ -20,36 +20,33 @@
 Modern, accessible, and highly customizable React components built with TypeScript and Tailwind CSS. Each component is production-ready, fully typed, and follows WCAG 2.1 AA accessibility standards.
 
 **Current Components:**
-- Music Player (with 9 advanced features)
+- Music Player
+- Button
+
+**Coming Soon:**
+- Video Player
+- File Upload
+- Data Tables
+- And more...
 
 ---
 
-## Music Player
+## Components
+
+### Music Player
 
 Feature-rich audio player with advanced playback capabilities and extensive customization options.
 
-### Key Features
-
-**Playback & Control**
+**Key Features:**
 - Single track and playlist support with auto-advance
 - HLS/DASH live streaming (hls.js + Safari native)
-- Volume control with mute functionality
-- Shuffle and repeat modes
-
-**Visualization & UI**
 - Real-time audio visualization (bars, waveform, circle)
-- 216 visual combinations (6 variants × 6 styles × 6 sizes)
-- Light/dark mode with auto-detection
-- Responsive design for all screen sizes
-
-**Advanced Features**
 - Media Session API integration (lock screen controls)
+- 216 visual combinations (6 variants × 6 styles × 6 sizes)
 - Global state management (multi-instance sync)
-- Web Audio API powered visualizations
 - WCAG 2.1 AA accessibility compliant
-- Buffering states and loading indicators
 
-### Quick Start
+**Quick Start:**
 
 ```tsx
 import { MusicPlayer } from '@/components/MusicPlayer'
@@ -61,12 +58,44 @@ export default function App() {
       artist='Cool Band'
       cover='/cover.jpg'
       audioSrc='/song.mp3'
+      variant='neon'
+      visualizer='bars'
     />
   )
 }
 ```
 
-**[Complete documentation available in the Wiki →](https://github.com/thenolle/nolly-components/wiki)**
+**[View complete Music Player documentation →](https://github.com/thenolle/nolly-components/wiki/Music-Player)**
+
+### Button
+
+Production-ready button component with comprehensive customization and 54,432 unique configurations.
+
+**Key Features:**
+- 9 variants × 8 styles × 6 sizes = 432 visual combinations
+- 7 color schemes with light/dark mode support
+- Icon support with left/right positioning and icon-only mode
+- Loading states with custom loading text
+- Active and disabled states with visual feedback
+- 6 border radius options (including pill shape)
+- Full accessibility support with ARIA labels
+
+**Quick Start:**
+
+```tsx
+import { Button } from '@/components/Button'
+import { Send } from 'lucide-react'
+
+export default function App() {
+  return (
+    <Button variant='neon' icon={Send}>
+      Click Me
+    </Button>
+  )
+}
+```
+
+**[View complete Button documentation →](https://github.com/thenolle/nolly-components/wiki/Button)**
 
 ---
 
@@ -83,6 +112,27 @@ Visit `http://localhost:3000` to see the live demos.
 
 ---
 
+## Project Structure
+
+```
+nolly-components/
+├── app/                          # Next.js app directory
+│   ├── globals.css              # Global styles
+│   ├── layout.tsx               # Root layout with providers
+│   ├── music-player/            # Music Player showcase
+│   └── button/                  # Button showcase
+├── components/                   # React components
+│   ├── MusicPlayer.tsx          # Music Player component
+│   └── Button.tsx               # Button component
+├── contexts/                     # React Context providers
+│   └── AudioPlayerContext.tsx   # Global audio state
+├── lib/                          # Utility functions
+│   └── utils.ts                 # Helper functions
+└── .wiki/                        # Documentation (39 pages)
+```
+
+---
+
 ## Design Philosophy
 
 **Modular Architecture**  
@@ -95,7 +145,7 @@ WCAG 2.1 AA compliant with full keyboard navigation, screen reader support, and 
 Fully typed with comprehensive type definitions. No `any` types, ever.
 
 **Performance Optimized**  
-Tree-shakeable exports, lazy loading support, optimized bundle size (~45KB gzipped).
+Tree-shakeable exports, lazy loading support, optimized bundle sizes.
 
 **Zero Configuration**  
 Works out of the box with sensible defaults. Customize when needed.
@@ -107,13 +157,13 @@ Intuitive prop APIs, comprehensive documentation, real-world examples.
 
 ## Browser Support
 
-| Browser | Version | Notes |
-|---------|---------|-------|
-| Chrome | 90+ | Full support |
-| Firefox | 88+ | Full support |
-| Safari | 14+ | Native HLS support |
-| Edge | 90+ | Full support |
-| Opera | 76+ | Full support |
+| Browser | Version | Notes              |
+| ------- | ------- | ------------------ |
+| Chrome  | 90+     | Full support       |
+| Firefox | 88+     | Full support       |
+| Safari  | 14+     | Native HLS support |
+| Edge    | 90+     | Full support       |
+| Opera   | 76+     | Full support       |
 
 Mobile browsers fully supported (Chrome Android, Safari iOS, Firefox Android, Samsung Internet).
 
@@ -152,9 +202,9 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Statistics
 
-![Components](https://img.shields.io/badge/Components-1-blue)
-![Bundle Size](https://img.shields.io/badge/Bundle%20Size-~45KB-green)
-![Wiki Pages](https://img.shields.io/badge/Documentation-26%20Pages-purple)
+![Components](https://img.shields.io/badge/Components-2-blue)
+![Bundle Size](https://img.shields.io/badge/Bundle%20Size-Optimized-green)
+![Wiki Pages](https://img.shields.io/badge/Documentation-39%20Pages-purple)
 ![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)
 
 ---
