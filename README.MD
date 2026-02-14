@@ -2,35 +2,71 @@
 
 # Nolly Components
 
-**A modern, production-ready React component library**
+**Production-ready React component library**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8)](https://tailwindcss.com/)
 
-[Live Demo](https://thenolle.github.io/nolly-components) · [Report Bug](https://github.com/thenolle/nolly-components/issues) · [Request Component](https://github.com/thenolle/nolly-components/issues)
+[Documentation](https://github.com/thenolle/nolly-components/wiki) • [Live Demo](https://thenolle.github.io/nolly-components) • [Report Bug](https://github.com/thenolle/nolly-components/issues)
 
 </div>
 
 ---
 
-## Components
+## Overview
 
-### Music Player
-A complete, feature-rich audio player with 9 advanced features:
+Modern, accessible, and highly customizable React components built with TypeScript and Tailwind CSS. Each component is production-ready, fully typed, and follows WCAG 2.1 AA accessibility standards.
 
-- **Media Session API**: Lock screen & headset controls
-- **Volume Control**: Desktop hover slider + mute
-- **Accessibility**: ARIA labels + reduced motion support
-- **Buffering States**: Audio-driven loading indicators
-- **Playlist Queue**: Auto-advance, shuffle, navigation
-- **Audio Visualizer**: 3 types (bars, waveform, circle) powered by Web Audio API
-- **HLS/DASH Streaming**: Live radio support with hls.js + Safari fallback
-- **Global State**: Multi-instance sync via React Context
-- **Design System**: Light/dark modes, 6 variants × 6 styles × 6 sizes = **1,296 combinations**
+**Current Components:**
+- Music Player (with 9 advanced features)
 
-[View Music Player Demo](https://thenolle.github.io/nolly-components/music-player) · [Component Docs](#music-player-api)
+---
+
+## Music Player
+
+Feature-rich audio player with advanced playback capabilities and extensive customization options.
+
+### Key Features
+
+**Playback & Control**
+- Single track and playlist support with auto-advance
+- HLS/DASH live streaming (hls.js + Safari native)
+- Volume control with mute functionality
+- Shuffle and repeat modes
+
+**Visualization & UI**
+- Real-time audio visualization (bars, waveform, circle)
+- 216 visual combinations (6 variants × 6 styles × 6 sizes)
+- Light/dark mode with auto-detection
+- Responsive design for all screen sizes
+
+**Advanced Features**
+- Media Session API integration (lock screen controls)
+- Global state management (multi-instance sync)
+- Web Audio API powered visualizations
+- WCAG 2.1 AA accessibility compliant
+- Buffering states and loading indicators
+
+### Quick Start
+
+```tsx
+import { MusicPlayer } from '@/components/MusicPlayer'
+
+export default function App() {
+  return (
+    <MusicPlayer
+      trackName='Summer Nights'
+      artist='Cool Band'
+      cover='/cover.jpg'
+      audioSrc='/song.mp3'
+    />
+  )
+}
+```
+
+**[Complete documentation available in the Wiki →](https://github.com/thenolle/nolly-components/wiki)**
 
 ---
 
@@ -38,261 +74,97 @@ A complete, feature-rich audio player with 9 advanced features:
 
 ```bash
 git clone https://github.com/thenolle/nolly-components.git
-
 cd nolly-components
-
 npm install
-# or
-yarn install
-# or
-pnpm install
-
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
----
-
-## Quick Start
-
-Setup
-
-Wrap your app with the global providers:
-```tsx
-// app/layout.tsx
-import { AudioPlayerProvider } from 'nolly-components/contexts/AudioPlayerContext'
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang='en'>
-      <body>
-        <AudioPlayerProvider>
-          {children}
-        </AudioPlayerProvider>
-      </body>
-    </html>
-  )
-}
-```
-
-Music Player - Basic Usage
-```tsx
-import { MusicPlayer } from 'nolly-components/components/MusicPlayer'
-
-export default function App() {
-  return (
-    <MusicPlayer
-      trackName='Song Name'
-      artist='Artist Name'
-      cover='/cover.jpg'
-      audioSrc='/song.mp3'
-      variant='neon'
-      visualizer='bars'
-    />
-  )
-}
-```
-
-Music Player - With Playlist
-```tsx
-const playlist = [
-  { id: '1', name: 'Track 1', artist: 'Artist A', cover: '/cover1.jpg', audioSrc: '/song1.mp3' },
-  { id: '2', name: 'Track 2', artist: 'Artist B', cover: '/cover2.jpg', audioSrc: '/song2.mp3' },
-  { id: '3', name: 'Track 3', artist: 'Artist C', cover: '/cover3.jpg', audioSrc: '/song3.mp3' }
-]
-
-<MusicPlayer
-  trackName='Fallback'
-  artist='Artist'
-  cover='/fallback.jpg'
-  playlist={playlist}
-  currentTrackIndex={0}
-  variant='glass'
-  visualizer='circle'
-  onTrackChange={(track, index) => console.log(`Now playing: ${track.name}`)}
-/>
-```
-
-Music Player - Global State
-
-Enable global state to sync multiple players (only one plays at a time):
-```tsx
-<MusicPlayer
-  id='player-1'
-  trackName='Song 1'
-  artist='Artist'
-  cover='/cover1.jpg'
-  audioSrc='/song1.mp3'
-  useGlobalState={true}
-/>
-
-<MusicPlayer
-  id='player-2'
-  trackName='Song 2'
-  artist='Artist'
-  cover='/cover2.jpg'
-  audioSrc='/song2.mp3'
-  useGlobalState={true}
-/>
-```
-
-Music Player - HLS Streaming
-```tsx
-<MusicPlayer
-  trackName='Live Radio'
-  artist='Station FM'
-  cover='/radio.jpg'
-  audioSrc='https://example.com/stream.m3u8'
-  variant='elevated'
-  visualizer='bars'
-/>
-```
-
----
-
-## Music Player API
-
-### Props
-
-| Prop              | Type                                                           | Default        | Description                                |
-| ----------------- | -------------------------------------------------------------- | -------------- | ------------------------------------------ |
-| trackName         | string                                                         | required       | Track title                                |
-| artist            | string                                                         | required       | Artist name                                |
-| cover             | string                                                         | required       | Cover image URL                            |
-| audioSrc          | string                                                         | undefined      | Audio file URL (MP3, HLS .m3u8, DASH .mpd) |
-| id                | string                                                         | auto-generated | Unique player ID (for global state)        |
-| variant           | 'default' \| 'glass' \| 'minimal' \| 'neon' \| 'soft' \| 'elevated' | 'default'      | Visual variant                             |
-| style             | 'filled' \| 'outline' \| 'ghost' \| 'soft' \| 'blur' \| 'flat' | 'filled'       | Style variant                              |
-| size              | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'                  | 'md'           | Component size                             |
-| visualizer        | 'none' \| 'bars' \| 'waveform' \| 'circle'                     | 'none'         | Audio visualizer type                      |
-| visualizerColor   | string                                                         | auto           | Custom visualizer color (CSS color)        |
-| playlist          | Track[]                                                        | []             | Array of tracks for queue                  |
-| currentTrackIndex | number                                                         | 0              | Starting track index in playlist           |
-| colorMode         | 'light' \| 'dark' \| 'auto'                                    | 'auto'         | Color mode                                 |
-| useGlobalState    | boolean                                                        | false          | Enable global state management             |
-| reducedMotion     | boolean                                                        | false          | Disable animations for accessibility       |
-| loading           | boolean                                                        | false          | External loading state                     |
-| deviceLabel       | string                                                         | auto-detected  | Device label override                      |
-| deviceType        | DeviceType                                                     | auto-detected  | Device type override                       |
-| onPlayToggle      | (playing: boolean) => void                                     | undefined      | Play/pause callback                        |
-| onTrackChange     | (track: Track, index: number) => void                          | undefined      | Track change callback                      |
-| onNext            | () => void                                                     | undefined      | Next button callback                       |
-| onPrevious        | () => void                                                     | undefined      | Previous button callback                   |
-| onShuffle         | () => void                                                     | undefined      | Shuffle button callback                    |
-| onAdd             | () => void                                                     | undefined      | Add button callback                        |
-| className         | string                                                         | ''             | Additional CSS classes                     |
-
-Track Type
-```ts
-type Track = {
-  id: string
-  name: string
-  artist: string
-  cover: string
-  audioSrc?: string
-}
-```
-
-#### Variants Gallery
-
-![Variants Gallery](.github/assets/variants-gallery.png)
-
----
-
-## Project Structure
-
-```
-nolly-components/
-├── app/
-│   ├── globals.css                 # Global styles
-│   ├── layout.tsx                  # Root layout with providers
-│   ├── page.tsx                    # Home page
-│   └── music-player/
-│       └── page.tsx                # Music player showcase
-├── components/
-│   └── MusicPlayer.tsx             # Music player component
-├── contexts/
-│   └── AudioPlayerContext.tsx      # Global audio state management
-├── lib/
-│   └── utils.ts                    # Utility functions (cn, etc.)
-├── .github/
-│   ├── assets/
-│   │   └── variants-gallery.png    # Variants gallery image
-│   ├── workflows/
-│   │   └── deploy.yml              # GitHub Pages auto-deploy
-│   ├── ISSUE_TEMPLATE/
-│   │   ├── bug_report.md
-│   │   └── feature_request.md
-│   └── PULL_REQUEST_TEMPLATE.md
-├── next.config.ts                  # Next.js config (static export)
-├── package.json
-├── tsconfig.json
-├── tailwind.config.ts
-├── README.md
-├── CONTRIBUTING.md
-├── SECURITY.md
-├── CODE_OF_CONDUCT.md
-└── LICENSE
-```
+Visit `http://localhost:3000` to see the live demos.
 
 ---
 
 ## Design Philosophy
 
-Nolly Components follows these principles:
-1. **Modular**: Each component is self-contained with minimal dependencies
-2. **Accessible**: WCAG 2.1 AA compliant with ARIA labels and keyboard navigation
-3. **Customizable**: Extensive prop APIs with design tokens
-4. **TypeScript-first**: Fully typed with no any
-5. **Zero-config**: Works out of the box with sensible defaults
-6. **Lightweight**: Tree-shakeable with optimal bundle size
+**Modular Architecture**  
+Each component is self-contained with minimal external dependencies. Import only what you need.
+
+**Accessibility First**  
+WCAG 2.1 AA compliant with full keyboard navigation, screen reader support, and ARIA labels.
+
+**TypeScript Native**  
+Fully typed with comprehensive type definitions. No `any` types, ever.
+
+**Performance Optimized**  
+Tree-shakeable exports, lazy loading support, optimized bundle size (~45KB gzipped).
+
+**Zero Configuration**  
+Works out of the box with sensible defaults. Customize when needed.
+
+**Developer Experience**  
+Intuitive prop APIs, comprehensive documentation, real-world examples.
+
+---
+
+## Browser Support
+
+| Browser | Version | Notes |
+|---------|---------|-------|
+| Chrome | 90+ | Full support |
+| Firefox | 88+ | Full support |
+| Safari | 14+ | Native HLS support |
+| Edge | 90+ | Full support |
+| Opera | 76+ | Full support |
+
+Mobile browsers fully supported (Chrome Android, Safari iOS, Firefox Android, Samsung Internet).
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (React 19)
+- **Language:** TypeScript 5.0
+- **Styling:** Tailwind CSS 4.0
+- **Icons:** Lucide React
+- **Streaming:** hls.js
+- **Audio:** Web Audio API
+- **State:** React Context
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before submitting pull requests.
+
+**Development Workflow:**
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-component`)
-3. Commit your changes (`git commit -m 'Add amazing component'`)
-4. Push to the branch (`git push origin feature/amazing-component`)
-5. Open a Pull Request
+2. Create feature branch (`git checkout -b feature/component-name`)
+3. Commit changes (`git commit -m 'Add new component'`)
+4. Push to branch (`git push origin feature/component-name`)
+5. Open Pull Request
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Acknowledgments
-
-- Built with [Next.js 16](https://nextjs.org/)
-- Styled with [Tailwind CSS 4](https://tailwindcss.com/)
-- Icons by [Lucide](https://lucide.dev/)
-- Streaming powered by [hls.js](https://github.com/video-dev/hls.js/)
-- Audio visualization via [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
 ## Statistics
 
-- ![Components: 1](https://img.shields.io/badge/Components-1-blue)
-- ![Bundle Size: ~50KB](https://img.shields.io/badge/Bundle%20Size-%7E50KB-green)
-- ![Coverage: Coming Soon](https://img.shields.io/badge/Coverage-Coming%20Soon-yellow)
+![Components](https://img.shields.io/badge/Components-1-blue)
+![Bundle Size](https://img.shields.io/badge/Bundle%20Size-~45KB-green)
+![Wiki Pages](https://img.shields.io/badge/Documentation-26%20Pages-purple)
+![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)
 
 ---
 
 <div align='center'>
 
-[Back to Top](#nolly-components)
+**[Read Documentation](https://github.com/thenolle/nolly-components/wiki)** • **[View Live Demo](https://thenolle.github.io/nolly-components)**
 
 Made with ❤️ by [Nolly](https://thenolle.com)
 
-[Website](https://thenolle.com) · [GitHub](https://github.com/thenolle) · [Patreon](https://patreon.com/c/_nolly)
+[Website](https://thenolle.com) • [GitHub](https://github.com/thenolle) • [Patreon](https://patreon.com/c/_nolly)
 
 </div>
